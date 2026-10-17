@@ -79,10 +79,10 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
       </div>
 
       {/* Center content */}
-      <div className="relative z-10 flex flex-col items-center text-center px-6">
+      <div className="relative z-10 flex flex-col items-center text-center px-4 sm:px-6 w-full max-w-lg">
         {/* Subtle high-tech protocol badge */}
         <div
-          className={`mb-6 flex items-center gap-2 font-mono text-[10px] tracking-[0.35em] text-slate-400 uppercase transition-all duration-700 ${
+          className={`mb-4 sm:mb-6 flex items-center gap-2 font-mono text-[9px] sm:text-[10px] tracking-[0.25em] sm:tracking-[0.35em] text-slate-400 uppercase transition-all duration-700 ${
             phase !== 'particles' ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
           }`}
         >
@@ -92,7 +92,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
 
         {/* Wordmark SAHVION */}
         <div
-          className={`transition-all duration-1000 transform ${
+          className={`transition-all duration-1000 transform max-w-full ${
             phase === 'reveal' || phase === 'ready'
               ? 'opacity-100 translate-y-0 scale-100'
               : 'opacity-0 translate-y-6 scale-95'
@@ -101,11 +101,10 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           <BrandWordmark size="xl" withGlow={true} />
         </div>
 
-
         {/* High-tech Loading Bar & Counter */}
-        <div className="mt-12 w-64 md:w-80 flex flex-col items-center">
-          <div className="w-full flex justify-between items-center font-mono text-[11px] text-slate-400 mb-2">
-            <span className="tracking-widest">CALIBRATING 3D ENVIRONMENT</span>
+        <div className="mt-8 sm:mt-12 w-full max-w-[280px] xs:max-w-xs sm:max-w-sm flex flex-col items-center">
+          <div className="w-full flex justify-between items-center font-mono text-[10px] sm:text-[11px] text-slate-400 mb-2">
+            <span className="tracking-wider sm:tracking-widest truncate mr-2">CALIBRATING 3D CORE</span>
             <span className="text-purple-400 font-semibold">{progress}%</span>
           </div>
 
@@ -116,7 +115,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
             />
           </div>
 
-          <div className="mt-4 flex items-center gap-3 text-[10px] font-mono text-slate-400 tracking-wider">
+          <div className="mt-3 sm:mt-4 flex items-center gap-2.5 sm:gap-3 text-[9px] sm:text-[10px] font-mono text-slate-400 tracking-wider">
             <span className="inline-block w-2 h-2 border border-purple-500/50 border-t-purple-400 rounded-full animate-spin" />
             <span>PRE-RENDERING GEOMETRIC CORES</span>
           </div>
@@ -125,7 +124,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         {/* Skip button for immediate entry */}
         <button
           onClick={onComplete}
-          className="mt-8 text-[11px] font-mono tracking-widest text-slate-400 hover:text-white transition-colors duration-200 uppercase cursor-pointer"
+          className="mt-6 sm:mt-8 text-[10px] sm:text-[11px] font-mono tracking-widest text-slate-400 hover:text-white transition-colors duration-200 uppercase cursor-pointer"
         >
           [ CLICK TO ENTER IMMEDIATE EXPERIENCE ]
         </button>

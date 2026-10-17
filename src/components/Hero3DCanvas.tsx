@@ -53,7 +53,7 @@ const ParticleField: React.FC<{ count?: number }> = ({ count = 750 }) => {
 };
 
 // Sub-component: The Central Abstract Metallic & Glass Sculpture
-const CoreSculpture: React.FC<{ scrollOffset: number }> = ({ scrollOffset }) => {
+const CoreSculpture: React.FC<{ scrollOffset: number; isMobile?: boolean }> = ({ scrollOffset, isMobile = false }) => {
   const groupRef = useRef<THREE.Group>(null!);
   const outerTorusRef = useRef<THREE.Mesh>(null!);
   const innerKnotRef = useRef<THREE.Mesh>(null!);
@@ -74,7 +74,7 @@ const CoreSculpture: React.FC<{ scrollOffset: number }> = ({ scrollOffset }) => 
       groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetRotY, 0.05);
 
       // Scroll position displacement
-      const targetPosY = -scrollOffset * 2.2;
+      const targetPosY = (isMobile ? 0.3 : 0) - scrollOffset * 2.2;
       const targetPosZ = -scrollOffset * 1.5;
       groupRef.current.position.y = THREE.MathUtils.lerp(groupRef.current.position.y, targetPosY, 0.05);
       groupRef.current.position.z = THREE.MathUtils.lerp(groupRef.current.position.z, targetPosZ, 0.05);
@@ -103,7 +103,7 @@ const CoreSculpture: React.FC<{ scrollOffset: number }> = ({ scrollOffset }) => 
   });
 
   return (
-    <group ref={groupRef}>
+    <group ref={groupRef} scale={isMobile ? 0.75 : 1}>
       {/* Centerpiece: Smooth curved metallic Torus Knot */}
       <mesh ref={innerKnotRef} castShadow receiveShadow>
         <torusKnotGeometry args={[1.2, 0.36, 160, 32, 2, 3]} />
@@ -214,6 +214,16 @@ const SceneRig: React.FC<{ scrollOffset: number }> = ({ scrollOffset }) => {
 
 export const Hero3DCanvas: React.FC = () => {
   const [scrollOffset, setScrollOffset] = React.useState(0);
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -228,20 +238,20 @@ export const Hero3DCanvas: React.FC = () => {
   return (
     <div className="absolute inset-0 w-full h-full pointer-events-auto">
       <Canvas
-        camera={{ position: [0, 0, 6], fov: 45, near: 0.1, far: 50 }}
+        camera={{ position: [0, 0, isMobile ? 7.5 : 6], fov: isMobile ? 50 : 45, near: 0.1, far: 50 }}
         gl={{
           antialias: true,
           powerPreference: 'high-performance',
           alpha: true,
         }}
-        dpr={[1, 2]}
+        dpr={isMobile ? [1, 1.5] : [1, 2]}
       >
         <color attach="background" args={['#050508']} />
         <fog attach="fog" args={['#050508', 5, 14]} />
 
         <SceneRig scrollOffset={scrollOffset} />
-        <ParticleField count={650} />
-        <CoreSculpture scrollOffset={scrollOffset} />
+        <ParticleField count={isMobile ? 380 : 650} />
+        <CoreSculpture scrollOffset={scrollOffset} isMobile={isMobile} />
       </Canvas>
     </div>
   );

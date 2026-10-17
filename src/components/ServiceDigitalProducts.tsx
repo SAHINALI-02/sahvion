@@ -1,4 +1,4 @@
-import React, { useRef, useState, useMemo } from 'react';
+import React, { useRef, useState, useMemo, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, Sphere, Line } from '@react-three/drei';
 import * as THREE from 'three';
@@ -113,54 +113,64 @@ const EcosystemScene: React.FC<{ activeNodeId: string | null; onSelectNode: (id:
 
 export const ServiceDigitalProducts: React.FC = () => {
   const [selectedNodeId, setSelectedNodeId] = useState<string>('ai');
+  const [isMobileScreen, setIsMobileScreen] = useState(false);
   const activeNode = nodes.find((n) => n.id === selectedNodeId) || nodes[0];
   const Icon = activeNode.icon;
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileScreen(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <section
       id="service-custom-products"
-      className="relative py-32 px-6 md:px-12 bg-[#050508] overflow-hidden border-t border-white/[0.04]"
+      className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-6 md:px-12 bg-[#050508] overflow-hidden border-t border-white/[0.04]"
     >
       {/* Background ambient lighting */}
       <div className="ambient-glow-purple w-[750px] h-[750px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Tag */}
-        <div className="flex items-center gap-3 font-mono text-[11px] tracking-[0.35em] text-purple-400 mb-6 uppercase">
+        <div className="flex items-center gap-2.5 sm:gap-3 font-mono text-[10px] sm:text-[11px] tracking-[0.3em] sm:tracking-[0.35em] text-purple-400 mb-6 uppercase">
           <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
           <span>// 06 DISCIPLINE DEEP DIVE</span>
         </div>
 
         {/* Section Header */}
-        <div className="max-w-3xl mb-12">
-          <div className="font-mono text-xs tracking-[0.25em] text-slate-500 uppercase mb-3">
+        <div className="max-w-3xl mb-8 sm:mb-12">
+          <div className="font-mono text-[10px] sm:text-xs tracking-[0.25em] text-slate-500 uppercase mb-2 sm:mb-3">
             04 • CONNECTED DIGITAL ECOSYSTEM
           </div>
-          <h2 className="text-4xl sm:text-6xl md:text-7xl font-display font-black text-white tracking-tight leading-[1.02]">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-black text-white tracking-tight leading-[1.02]">
             BUILT FOR YOUR <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-purple-400 drop-shadow-[0_0_30px_rgba(168,85,247,0.3)]">
               NEXT BIG IDEA.
             </span>
           </h2>
-          <p className="mt-6 text-slate-300 text-lg font-light leading-relaxed">
+          <p className="mt-4 sm:mt-6 text-slate-300 text-base sm:text-lg font-light leading-relaxed">
             We don’t build isolated tools. We engineer deeply unified digital ecosystems where web, mobile, cloud infrastructure, AI intelligence, and real-time data flow through a singular high-velocity core.
           </p>
         </div>
 
         {/* The 3D Connected Ecosystem Arena */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
           
           {/* Left: Interactive 3D WebGL Ecosystem Canvas */}
-          <div className="lg:col-span-8 relative h-[480px] md:h-[580px] rounded-3xl bg-[#08080f]/90 border border-white/10 overflow-hidden shadow-[0_30px_90px_rgba(0,0,0,0.85)] backdrop-blur-2xl">
+          <div className="lg:col-span-8 relative h-[380px] sm:h-[480px] md:h-[580px] rounded-2xl sm:rounded-3xl bg-[#08080f]/90 border border-white/10 overflow-hidden shadow-[0_30px_90px_rgba(0,0,0,0.85)] backdrop-blur-2xl">
             {/* Interactive hint */}
-            <div className="absolute top-6 left-6 z-20 font-mono text-[10px] tracking-widest text-slate-400 bg-black/60 px-3 py-1.5 rounded-lg border border-white/10">
+            <div className="absolute top-4 sm:top-6 left-4 sm:left-6 z-20 font-mono text-[9px] sm:text-[10px] tracking-widest text-slate-400 bg-black/60 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg border border-white/10 max-w-[calc(100%-2rem)] truncate">
               <span className="text-purple-400 mr-2">●</span> INTERACTIVE 3D ORBIT // CLICK NODES TO INSPECT
             </div>
 
             <Canvas
-              camera={{ position: [0, 0, 7.5], fov: 45 }}
+              camera={{ position: [0, 0, isMobileScreen ? 9.5 : 7.5], fov: isMobileScreen ? 50 : 45 }}
               gl={{ antialias: true, alpha: true }}
-              dpr={[1, 2]}
+              dpr={isMobileScreen ? [1, 1.5] : [1, 2]}
             >
               <ambientLight intensity={0.5} />
               <pointLight position={[5, 5, 5]} intensity={2.5} color="#c084fc" />
@@ -169,12 +179,12 @@ export const ServiceDigitalProducts: React.FC = () => {
             </Canvas>
 
             {/* Bottom Quick Selector Bar */}
-            <div className="absolute bottom-4 left-4 right-4 z-20 flex flex-wrap gap-2 justify-center bg-[#0d0d16]/80 backdrop-blur-md p-2 rounded-2xl border border-white/10">
+            <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 z-20 flex items-center gap-1.5 sm:gap-2 overflow-x-auto justify-start sm:justify-center bg-[#0d0d16]/85 backdrop-blur-md p-1.5 sm:p-2 rounded-xl sm:rounded-2xl border border-white/10">
               {nodes.map((node) => (
                 <button
                   key={node.id}
                   onClick={() => setSelectedNodeId(node.id)}
-                  className={`px-3 py-1.5 rounded-xl font-mono text-[10px] tracking-wider transition-all duration-200 ${
+                  className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl font-mono text-[9px] sm:text-[10px] tracking-wider transition-all duration-200 shrink-0 whitespace-nowrap ${
                     selectedNodeId === node.id
                       ? 'bg-purple-600 text-white shadow-[0_0_12px_rgba(168,85,247,0.5)]'
                       : 'bg-white/[0.03] text-slate-400 hover:text-white border border-white/[0.06]'
@@ -187,47 +197,47 @@ export const ServiceDigitalProducts: React.FC = () => {
           </div>
 
           {/* Right: Selected Node Telemetry Card */}
-          <div className="lg:col-span-4 cyber-glass rounded-3xl p-8 border border-purple-500/30 shadow-[0_20px_50px_rgba(168,85,247,0.15)] relative overflow-hidden">
-            <div className="flex items-center justify-between mb-6">
-              <div className="w-12 h-12 rounded-xl bg-purple-950/60 border border-purple-500/40 flex items-center justify-center text-purple-300">
-                <Icon className="w-6 h-6" />
+          <div className="lg:col-span-4 cyber-glass rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-purple-500/30 shadow-[0_20px_50px_rgba(168,85,247,0.15)] relative overflow-hidden">
+            <div className="flex items-center justify-between mb-4 sm:mb-6">
+              <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-xl bg-purple-950/60 border border-purple-500/40 flex items-center justify-center text-purple-300">
+                <Icon className="w-5 sm:w-6 h-5 sm:h-6" />
               </div>
-              <span className="font-mono text-xs px-2.5 py-1 rounded bg-purple-950 text-purple-300 border border-purple-800">
-                NODE LATENCY: {activeNode.latency}
+              <span className="font-mono text-[10px] sm:text-xs px-2 sm:px-2.5 py-0.5 sm:py-1 rounded bg-purple-950 text-purple-300 border border-purple-800">
+                LATENCY: {activeNode.latency}
               </span>
             </div>
 
-            <div className="font-mono text-[10px] tracking-[0.3em] text-purple-400 uppercase">
+            <div className="font-mono text-[9px] sm:text-[10px] tracking-[0.25em] sm:tracking-[0.3em] text-purple-400 uppercase">
               {activeNode.category}
             </div>
-            <h3 className="font-display font-black text-2xl text-white mt-1">
+            <h3 className="font-display font-black text-xl sm:text-2xl text-white mt-1">
               {activeNode.name}
             </h3>
 
-            <div className="mt-6 space-y-4 font-mono text-xs">
-              <div className="p-3.5 rounded-xl bg-black/40 border border-white/[0.06]">
-                <div className="text-[10px] text-slate-400 uppercase">DEPLOYMENT STACK</div>
-                <div className="text-white mt-1 font-semibold">{activeNode.specs}</div>
+            <div className="mt-4 sm:mt-6 space-y-3 sm:space-y-4 font-mono text-xs">
+              <div className="p-3 sm:p-3.5 rounded-xl bg-black/40 border border-white/[0.06]">
+                <div className="text-[9px] sm:text-[10px] text-slate-400 uppercase">DEPLOYMENT STACK</div>
+                <div className="text-white mt-1 font-semibold text-xs sm:text-sm">{activeNode.specs}</div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-black/40 border border-white/[0.06]">
-                <div className="text-[10px] text-slate-400 uppercase">SYNCHRONIZATION PROTOCOL</div>
-                <div className="text-purple-300 mt-1 flex items-center justify-between">
+              <div className="p-3 sm:p-3.5 rounded-xl bg-black/40 border border-white/[0.06]">
+                <div className="text-[9px] sm:text-[10px] text-slate-400 uppercase">SYNCHRONIZATION PROTOCOL</div>
+                <div className="text-purple-300 mt-1 flex items-center justify-between text-xs">
                   <span>WEBSOCKET RPC</span>
-                  <span className="text-emerald-400 text-[10px]">● ENCRYPTED</span>
+                  <span className="text-emerald-400 text-[9px] sm:text-[10px]">● ENCRYPTED</span>
                 </div>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-black/40 border border-white/[0.06]">
-                <div className="text-[10px] text-slate-400 uppercase">SECURITY ARCHITECTURE</div>
-                <div className="text-slate-300 mt-1 flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <div className="p-3 sm:p-3.5 rounded-xl bg-black/40 border border-white/[0.06]">
+                <div className="text-[9px] sm:text-[10px] text-slate-400 uppercase">SECURITY ARCHITECTURE</div>
+                <div className="text-slate-300 mt-1 flex items-center gap-2 text-xs">
+                  <ShieldCheck className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-emerald-400 shrink-0" />
                   <span>Zero-Trust Microsegmentation</span>
                 </div>
               </div>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-white/[0.08] flex justify-between items-center text-[10px] font-mono text-slate-400">
+            <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-white/[0.08] flex justify-between items-center text-[9px] sm:text-[10px] font-mono text-slate-400">
               <span>ECOSYSTEM CORE V2</span>
               <span className="text-purple-400 font-semibold">HARMONIZED</span>
             </div>

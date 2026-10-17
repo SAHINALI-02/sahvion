@@ -8,11 +8,11 @@ interface BrandWordmarkProps {
 }
 
 const logoSizeClasses = {
-  sm: 'h-7 w-auto md:h-8',
-  md: 'h-9 w-auto md:h-11',
-  lg: 'h-14 w-auto',
-  xl: 'h-18 w-auto md:h-24',
-  hero: 'h-24 w-auto md:h-32',
+  sm: 'h-6 sm:h-7 md:h-8 w-auto',
+  md: 'h-7 sm:h-8 md:h-10 lg:h-11 w-auto',
+  lg: 'h-9 sm:h-12 md:h-14 w-auto',
+  xl: 'h-12 sm:h-16 md:h-20 lg:h-24 w-auto',
+  hero: 'h-16 sm:h-20 md:h-28 lg:h-32 w-auto',
 };
 
 /**
@@ -26,11 +26,11 @@ export const BrandWordmark: React.FC<BrandWordmarkProps> = ({
   withGlow = true,
 }) => {
   return (
-    <div className={`inline-flex items-center select-none ${className}`}>
+    <div className={`inline-flex items-center select-none max-w-full ${className}`}>
       <img
         src="/images/sahvion-logo.png"
         alt="SAHVION logo"
-        className={`${logoSizeClasses[size]} max-w-none object-contain block rounded-lg transition-transform duration-300 hover:scale-[1.02] ${
+        className={`${logoSizeClasses[size]} max-w-full object-contain block rounded-lg transition-transform duration-300 hover:scale-[1.02] ${
           withGlow ? 'drop-shadow-[0_0_20px_rgba(168,85,247,0.4)]' : ''
         }`}
         style={{ filter: 'saturate(1.1) contrast(1.05)' }}

@@ -36,43 +36,43 @@ export const IntroSection: React.FC = () => {
   ];
 
   return (
-    <section id="intro" className="relative py-32 px-6 md:px-12 bg-[#060609] overflow-hidden cyber-grid border-t border-white/[0.04]">
+    <section id="intro" className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-6 md:px-12 bg-[#060609] overflow-hidden cyber-grid border-t border-white/[0.04]">
       {/* Ambient background glow */}
       <div className="ambient-glow-purple w-[600px] h-[600px] top-1/4 -right-48" />
       <div className="ambient-glow-purple w-[400px] h-[400px] bottom-10 -left-20" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header Indicator */}
-        <div className="flex items-center gap-3 font-mono text-[11px] tracking-[0.35em] text-purple-400 mb-8 uppercase">
+        <div className="flex items-center gap-2.5 sm:gap-3 font-mono text-[10px] sm:text-[11px] tracking-[0.3em] sm:tracking-[0.35em] text-purple-400 mb-6 sm:mb-8 uppercase">
           <span className="w-2 h-2 rounded-sm bg-purple-500 shadow-[0_0_8px_#a855f7]" />
           <span>// 01 ARCHITECTURAL PHILOSOPHY</span>
         </div>
 
         {/* Large Typography Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start">
           <div className="lg:col-span-8">
-            <h2 className="text-4xl sm:text-6xl md:text-7xl font-display font-extrabold tracking-tight leading-[1.05] text-white">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-extrabold tracking-tight leading-[1.05] text-white">
               WE TURN IDEAS <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-slate-100 to-slate-400">
                 INTO DIGITAL EXPERIENCES.
               </span>
             </h2>
 
-            <p className="mt-8 text-xl md:text-2xl text-slate-300 font-light leading-relaxed max-w-3xl">
+            <p className="mt-6 sm:mt-8 text-base sm:text-xl md:text-2xl text-slate-300 font-light leading-relaxed max-w-3xl">
               “SAHVION combines technology, design and innovation to create digital experiences built for the future.”
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-6 font-mono text-xs tracking-widest text-slate-400">
+            <div className="mt-6 sm:mt-8 flex flex-wrap items-center gap-3 sm:gap-6 font-mono text-[11px] sm:text-xs tracking-widest text-slate-400">
               <span className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                 ENTERPRISE RIGOR
               </span>
-              <span>•</span>
+              <span className="hidden sm:inline">•</span>
               <span className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
                 AESTHETIC SOPHISTICATION
               </span>
-              <span>•</span>
+              <span className="hidden sm:inline">•</span>
               <span className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
                 REACTIVE PERCEPTION
@@ -89,7 +89,7 @@ export const IntroSection: React.FC = () => {
               transform: `perspective(1000px) rotateX(${-mousePos.y * 14}deg) rotateY(${mousePos.x * 14}deg)`,
               transition: 'transform 0.2s cubic-bezier(0.2, 0, 0, 1)',
             }}
-            className="lg:col-span-4 cyber-glass rounded-2xl p-8 relative overflow-hidden group border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
+            className="lg:col-span-4 cyber-glass rounded-2xl p-5 sm:p-8 relative overflow-hidden group border border-white/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.6)] w-full"
           >
             {/* Shimmer light follow effect */}
             <div
@@ -108,10 +108,10 @@ export const IntroSection: React.FC = () => {
               </div>
             </div>
 
-            <div className="space-y-4 font-mono text-xs">
+            <div className="space-y-3 sm:space-y-4 font-mono text-xs">
               <div className="p-3 rounded-lg bg-black/40 border border-white/[0.05]">
                 <div className="text-[10px] text-slate-400 uppercase">PROCESSING CAPACITY</div>
-                <div className="text-xl font-display font-semibold text-white mt-1">99.98% SPEED INDEX</div>
+                <div className="text-lg sm:text-xl font-display font-semibold text-white mt-1">99.98% SPEED INDEX</div>
                 <div className="w-full bg-white/10 h-1 rounded-full mt-2 overflow-hidden">
                   <div className="bg-purple-400 h-full w-[94%]" />
                 </div>
@@ -119,7 +119,7 @@ export const IntroSection: React.FC = () => {
 
               <div className="p-3 rounded-lg bg-black/40 border border-white/[0.05]">
                 <div className="text-[10px] text-slate-400 uppercase">SPATIAL RENDER FIDELITY</div>
-                <div className="text-xl font-display font-semibold text-white mt-1">120 FPS NATIVE</div>
+                <div className="text-lg sm:text-xl font-display font-semibold text-white mt-1">120 FPS NATIVE</div>
                 <div className="w-full bg-white/10 h-1 rounded-full mt-2 overflow-hidden">
                   <div className="bg-purple-400 h-full w-[98%]" />
                 </div>
@@ -142,24 +142,24 @@ export const IntroSection: React.FC = () => {
         </div>
 
         {/* Core Pillars Grid */}
-        <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="mt-16 sm:mt-24 grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-8">
           {pillars.map((pillar, index) => {
             const Icon = pillar.icon;
             return (
               <div
                 key={index}
-                className="cyber-glass rounded-xl p-8 border border-white/[0.06] hover:border-purple-500/40 transition-all duration-300 relative group"
+                className="cyber-glass rounded-xl p-6 sm:p-8 border border-white/[0.06] hover:border-purple-500/40 transition-all duration-300 relative group"
               >
-                <div className="w-12 h-12 rounded-lg bg-purple-950/40 border border-purple-500/30 flex items-center justify-center mb-6 text-purple-300 group-hover:scale-110 group-hover:border-purple-400 transition-all">
-                  <Icon className="w-6 h-6" />
+                <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg bg-purple-950/40 border border-purple-500/30 flex items-center justify-center mb-5 sm:mb-6 text-purple-300 group-hover:scale-110 group-hover:border-purple-400 transition-all">
+                  <Icon className="w-5 sm:w-6 h-5 sm:h-6" />
                 </div>
-                <div className="font-mono text-[11px] tracking-[0.25em] text-slate-400 mb-2">
+                <div className="font-mono text-[10px] sm:text-[11px] tracking-[0.25em] text-slate-400 mb-2">
                   0{index + 1} // ARCHITECTURE
                 </div>
-                <h3 className="text-xl font-display font-bold text-white mb-3">
+                <h3 className="text-lg sm:text-xl font-display font-bold text-white mb-2 sm:mb-3">
                   {pillar.title}
                 </h3>
-                <p className="text-slate-400 text-sm leading-relaxed">
+                <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
                   {pillar.desc}
                 </p>
               </div>
