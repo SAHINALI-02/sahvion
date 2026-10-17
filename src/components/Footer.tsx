@@ -138,10 +138,10 @@ export const Footer: React.FC = () => {
                 <li className="flex items-center gap-2">
                   <Phone className="w-3.5 h-3.5 text-purple-400 shrink-0" />
                   <a
-                    href="tel:+918148063975"
+                    href="tel:+918531833975"
                     className="hover:text-purple-400 transition-colors underline-offset-4 hover:underline"
                   >
-                    +91 8148063975
+                    +91 8531833975
                   </a>
                 </li>
                 <li className="pt-1 text-slate-500 text-[10px]">

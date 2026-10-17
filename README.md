@@ -28,7 +28,7 @@ A premium, cinematic, futuristic technology experience featuring an interactive 
 ## 📞 Official SAHVION Contact Details
 
 - **Official Contact Email**: [`sahvion26@gmail.com`](mailto:sahvion26@gmail.com)
-- **Official Mobile / WhatsApp**: [`+91 8148063975`](tel:+918148063975)
+- **Official Mobile / WhatsApp**: [`+91 8531833975`](tel:+918531833975)
 - **Coordinates**: `37.7749° N, 122.4194° W` (Global Edge)
 
 ---
@@ -142,7 +142,7 @@ SMTP_PORT=587
 SMTP_USERNAME=
 SMTP_PASSWORD=
 CONTACT_EMAIL=sahvion26@gmail.com
-CONTACT_PHONE=+91 8148063975
+CONTACT_PHONE=+91 8531833975
 ENVIRONMENT=development
 ```
 

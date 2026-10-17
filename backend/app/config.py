@@ -51,7 +51,7 @@ class Settings:
 
     # Contact & Email Configuration
     CONTACT_EMAIL: str = os.getenv("CONTACT_EMAIL", "sahvion26@gmail.com")
-    CONTACT_PHONE: str = os.getenv("CONTACT_PHONE", "+91 8148063975")
+    CONTACT_PHONE: str = os.getenv("CONTACT_PHONE", "+91 8531833975")
     EMAIL_PROVIDER: str = os.getenv("EMAIL_PROVIDER", "resend").strip().lower()
 
     # Production-safe transactional email configuration.

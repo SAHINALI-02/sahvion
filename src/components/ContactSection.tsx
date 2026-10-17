@@ -109,7 +109,7 @@ export const ContactSection: React.FC = () => {
                 <span>EMAIL US</span>
               </a>
               <a
-                href="tel:+918148063975"
+                href="tel:+918531833975"
                 className="inline-flex items-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full bg-[#12121c] border border-white/10 hover:border-purple-400/60 font-mono text-[11px] sm:text-xs text-white tracking-wider uppercase transition-all"
               >
                 <Phone className="w-3.5 h-3.5 text-purple-400" />
@@ -137,10 +137,10 @@ export const ContactSection: React.FC = () => {
                   PHONE
                 </div>
                 <a
-                  href="tel:+918148063975"
+                  href="tel:+918531833975"
                   className="font-display font-semibold text-white text-base sm:text-lg hover:text-purple-300 transition-colors flex items-center justify-between group"
                 >
-                  <span>+91 8148063975</span>
+                  <span>+91 8531833975</span>
                   <ArrowUpRight className="w-4 h-4 text-purple-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
                 </a>
               </div>
@@ -254,7 +254,7 @@ export const ContactSection: React.FC = () => {
                           type="tel"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          placeholder="+91 8148063975"
+                          placeholder="+91 8531833975"
                           className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white/[0.03] border border-white/[0.08] text-white placeholder-slate-600 text-xs sm:text-sm font-sans focus:outline-none focus:border-purple-400 transition-colors"
                         />
                       </div>
